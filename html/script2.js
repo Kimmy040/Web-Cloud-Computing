@@ -1,0 +1,31 @@
+
+function setMovie(data) {
+    console.log(data)
+    let title = document.getElementById("title")
+    title.innerHTML = data.title
+    let genre = document.getElementById("genre");
+    genre.innerHTML = data.genre_names;
+    let rating = document.getElementById("rating");
+    rating.innerHTML = data.user_rating;
+    let year = document.getElementById("year");
+    year.innerHTML = data.year;
+    let platform = document.getElementById("platform");
+    platform.innerHTML = data.sources; //Needs fix
+    let duration = document.getElementById("duration");
+    duration.innerHTML = data.runtime_minutes;
+    let type = document.getElementById("type");
+    type.innerHTML = data.type;
+    let plot = document.getElementById("plot");
+    plot.innerHTML = direction(data.plot_overview)
+    let posterimg = document.getElementById("poster");
+    posterimg.innerHTML = `<img width="100px" src="${data.poster}">`
+}
+
+function getMovie() {
+    let movieId="3173903"
+    let apiKey='GlgR550tZqXd7XRX5w5FXfiEbxZ1TBMbrb6ZM9Tm'
+    let url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}` //&append_to_response=sources`;
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {setMovie(data);console.log(data);});
+}
