@@ -68,12 +68,6 @@
     background-color: rgba(0, 0, 0, 0.459);
     margin-top: 20px;
   }
-  .release {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 40px;
-  }
   figure {
     width: 300px;
     margin: 20px;
