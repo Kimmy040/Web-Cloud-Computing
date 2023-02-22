@@ -19,7 +19,7 @@ function searchResults(content, str) {
       fc.textContent = `${content.results[i].name} ${content.results[i].year}`;
       fig.appendChild(img);
       fig.appendChild(fc);
-      let out = document.querySelector(".out");
+      let out = document.querySelector(".output");
       out.insertAdjacentElement("afterbegin", fig);
     }
   } else {
@@ -32,7 +32,7 @@ function searchResults(content, str) {
       fc.textContent = `${content.results[0].name} ${content.results[0].year}`;
       fig.appendChild(img);
       fig.appendChild(fc);
-      let out = document.querySelector(".out");
+      let out = document.querySelector(".output");
       out.insertAdjacentElement("afterbegin", fig);
     }
   }
