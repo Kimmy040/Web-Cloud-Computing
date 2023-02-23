@@ -19,6 +19,10 @@ function searchResults(content, str) {
       fc.textContent = `${content.results[i].name} ${content.results[i].year}`;
       fig.appendChild(img);
       fig.appendChild(fc);
+      // add event listener to redirect to movieDetails.html
+      fig.addEventListener("click", () => {
+        window.location.href = `movieDetails.html?id=${content.results[i].id}`;
+      });
       let out = document.querySelector(".output");
       out.insertAdjacentElement("afterbegin", fig);
     }
@@ -32,6 +36,10 @@ function searchResults(content, str) {
       fc.textContent = `${content.results[0].name} ${content.results[0].year}`;
       fig.appendChild(img);
       fig.appendChild(fc);
+      // add event listener to redirect to movieDetails.html
+      fig.addEventListener("click", () => {
+        window.location.href = `movieDetails.html?id=${content.results[0].id}`;
+      });
       let out = document.querySelector(".output");
       out.insertAdjacentElement("afterbegin", fig);
     }
