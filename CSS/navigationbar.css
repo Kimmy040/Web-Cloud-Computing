@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+  }
+  html {
+    font-size: 16px;
+    line-height: 1.4;
+    font-family: Helvetica, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../IMAGES/movies.png');
+    background-size: cover;
+    max-width: 100%;
+  }
+  
+  header {
+    background-color: #30588200;
+    color: #fff;
+    display: flex;
+    grid-template-columns: 1fr;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    padding: 20px;
+    background-color: #8154547a;
+  }
+  
+  .title a {
+    font-size: 2vw;
+    font-weight: bold;
+    color: #fffcfc;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav li {
+    margin-left: 20px;
+  }
+  
+  nav a {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.5vw;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
