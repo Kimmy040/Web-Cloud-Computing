@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Imdb 2</title>
+    <script src=""></script>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <header>
+        <p id="title"> Breaking Bad</p>
+    </header>
+    <section>
+    <div class="parent">
+        <div class="div2">
+        <ul class="nav">
+           <li> <span id="similar_titles">Suggesting Similar Movies : in The Api he suggests movies id similar to that one </span> </br></li>
+        </ul>
+        <span id="'trailer"></span>
+        <iframe src="https://www.youtube.com/embed/XZ8daibM3AE"></iframe> <!--width="400" height="325"-->
+        </div>
+        <div class="div1">
+        <div id="poster" class="div1"><img src="https://cdn.watchmode.com/posters/03173903_poster_w185.jpg" alt=""></div>
+        </div>
+       
+        <div class="div3">
+            <span id="type">Type: Tv show</span> </br>
+            <span id="genre">Genre: Drama</span> </br>
+            <span id="year">Year: 1993</span> </br>
+            <span id="rating">Rating: 9.3</span> </br> 
+            <span id="platform">Platform: Netflix</span> </br>
+            <span id="duration">Duration: 45 min</span> </br>
+            <span id="episodes">Episodes: 68</span> </br>
+            <span id="original_language">Language : en</span> </br>
+            <span id="release_date">Release Date : 2008-01-20</span> </br>
+            <span id="critic_score">Score : 85</span> </br> 
+            <span id="user_rating">User Rating : 9.2</span> </br>
+            <span id="runtime_minutes">Runtime minutes :45</span> </br>
+            <span id="format">Format : HD</span> </br>
+        </div>
+
+       <div class="div5">
+        <h3 id="plot"> When Walter White, a New Mexico chemistry teacher, is diagnosed with Stage III cancer 
+            and given a prognosis of only two years left to live. He becomes filled with a sense of 
+            fearlessness and an unrelenting desire to secure his family's financial future at any 
+            cost as he enters the dangerous world of drugs and crime.
+        </h3>
+       </div>
+    </div>
+    </section>
+    <footer>
+        <p>Streaming data powered by <a href="https://api.watchmode.com/">Watchmode.com</a></p>
+    </footer>
+    <script src="script2.js">
+       getMovie();
+    </script>
+</body>
+</html>
