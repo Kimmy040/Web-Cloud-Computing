@@ -2,8 +2,8 @@ function setMovie(data) {
   console.log(data);
   let title = document.getElementById("title");
   title.innerHTML = data.title;
-  let plot = document.getElementById("plot_overview");
-  plot.innerHTML = direction(data.plot_overview);
+  let plot = document.getElementById("plot");
+  plot.innerHTML = data.plot_overview;
   let genre = document.getElementById("genre");
   genre.innerHTML = data.genre_names;
   let rating = document.getElementById("user_rating");
@@ -19,13 +19,11 @@ function setMovie(data) {
   let posterimg = document.getElementById("poster");
   posterimg.innerHTML = `<img width="100px" src="${data.poster}">`;
   let original_language = document.getElementById("original_language");
-  original_language.innerHTML = data.original_languager;
+  original_language.innerHTML = data.original_language;
   let release_date = document.getElementById("release_date");
   release_date.innerHTML = data.release_date;
-  let tv_show = document.getElementById("tv_show");  
-  tv_show.innerHTML = data.tv_show;
-  let user_rating = document.getElementById("user_rating");
-  user_rating.innerHTML = data.user_rating;
+  let tv_show = document.getElementById("type");  
+  tv_show.innerHTML = data.type;
   let runtime_minutes = document.getElementById("runtime_minutes");
   runtime_minutes.innerHTML = data.runtime_minutes;
   let similar_titles = document.getElementById("similar_titles");
@@ -66,3 +64,4 @@ function getMovie() {
 document.addEventListener('DOMContentLoaded', function() {
   getMovie();
 });
+
