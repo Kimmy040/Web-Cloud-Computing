@@ -1,10 +1,12 @@
 function setMovie(data) {
   console.log(data);
   let title = document.getElementById("title");
-  title.innerHTML = data.title[id];
+  title.innerHTML = data.title;
+  let plot = document.getElementById("plot_overview");
+  plot.innerHTML = direction(data.plot_overview);
   let genre = document.getElementById("genre");
   genre.innerHTML = data.genre_names;
-  let rating = document.getElementById("rating");
+  let rating = document.getElementById("user_rating");
   rating.innerHTML = data.user_rating;
   let year = document.getElementById("year");
   year.innerHTML = data.year;
@@ -14,9 +16,6 @@ function setMovie(data) {
   duration.innerHTML = data.runtime_minutes;
   let type = document.getElementById("type");
   type.innerHTML = data.type;
-  let plot = document.getElementById("plot");
-  plot.innerHTML = direction(data.plot_overview);
-  console.log(direction(data.plot_overview));
   let posterimg = document.getElementById("poster");
   posterimg.innerHTML = `<img width="100px" src="${data.poster}">`;
   let original_language = document.getElementById("original_language");
@@ -35,24 +34,35 @@ function setMovie(data) {
   format.innerHTML = data.format;
 }
 
+function getMovie() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const movieId = urlParams.get('id');
+  if (!movieId) {
+    console.error('Missing movie ID in URL');
+    alert('Missing movie ID in URL');
+    return;
+  }
 
-function getMovie(movieId) {
-  //let movieId= "1159475"
-  let apiKey = "yIOIuRIvm5qFssBdLKwDsyrkCO4n8zJvADTXzBnT";
-  //let url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}`; //&append_to_response=sources`;
-  let baseUrl = window.location.href.split('?')[0]; // remove any existing query string
-  window.location.href = `${baseUrl}?id=${movieId}`;
+  const apiKey = "yIOIuRIvm5qFssBdLKwDsyrkCO4n8zJvADTXzBnT";
+  const url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}`;
+
   fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch movie details');
+      }
+      return response.json();
+    })
+    .then(data => {
       setMovie(data);
-      console.log(data);
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Failed to fetch movie details');
     });
 }
 
-
-function setMovie(data) {
-  console.log(data);
-  // Check the value of the "direction" property
-  // ...
-}
+document.addEventListener('DOMContentLoaded', function() {
+  getMovie();
+});
