@@ -11,6 +11,7 @@
             "name": "http://127.0.0.1:3000/HTML/movieDetails.html",
             "request": "launch",
             "url": "http://127.0.0.1:3000/HTML/movieDetails.html"
+<<<<<<< HEAD
         },
         {
             "type": "chrome",
@@ -29,6 +30,8 @@
             "name": "http://127.0.0.1:3000/HTML/movieDetails-Edit.html",
             "request": "launch",
             "url": "http://127.0.0.1:3000/HTML/movieDetails-Edit.html"
+=======
+>>>>>>> 29f4ffeb43668e49d09450e462f785df0ddf9fca
         }
     ]
 }
