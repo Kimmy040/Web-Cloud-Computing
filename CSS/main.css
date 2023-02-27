@@ -38,7 +38,7 @@ button:hover {
 
 .output {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
   margin-top: 5px;
 }
@@ -46,7 +46,8 @@ button:hover {
 figure {
   height: 50vh;
   margin: 20px;
-  margin-bottom: 200px
+  margin-bottom: 200px;
+  cursor: pointer;
 }
 
 img {
@@ -57,24 +58,25 @@ img {
   transition: transform 0.3s ease-out;
 }
   
-img:hover {
-  transform: scale(1.1);
-}
-  
 figcaption {
   text-align: center;
-  font-size: 16px;
+  font-size: 2vh;
   color: rgb(0, 0, 0);
   background-color: #ffffffae;
   font-weight: bolder;
-  margin-top: 10px;
+  margin-top: 3vh;
   border-radius: 5px;
   overflow: hidden;
-  padding: 10px 15px;
+  padding: 1vw 2vw;
   transition: color 0.3s ease;
 }
   
-figcaption:hover {
+figure:hover img,
+figure:hover figcaption {
+  transform: scale(1.1);
+}
+
+figure:hover figcaption {
   color: white;
   background-color: #305882;
 }
