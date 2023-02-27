@@ -59,12 +59,9 @@
        getMovie(id);
     </script!-->
     <script>
-        let id = new URLSearchParams(window.location.search).get('id')
-        console.log(id)
-      
-        if (id) { // check if id is not null or empty
-          getMovie(id);
-        }
-      </script>
+        let id = new URLSearchParams(window.location.search).get('id');
+        console.log(id);
+        getMovie(id);
+    </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 function setMovie(data) {
   console.log(data);
   let title = document.getElementById("title");
-  title.innerHTML = data.title;
+  title.innerHTML = data.title[id];
   let genre = document.getElementById("genre");
   genre.innerHTML = data.genre_names;
   let rating = document.getElementById("rating");
@@ -34,20 +34,24 @@ function setMovie(data) {
   format.innerHTML = data.format;
 }
 
-function setMovie(data) {
-  console.log(data);
-  // Check the value of the "direction" property
-  // ...
-}
 
 function getMovie(movieId) {
-  let movieId="1159475"
-  let apiKey = "GlgR550tZqXd7XRX5w5FXfiEbxZ1TBMbrb6ZM9Tm";
-  let url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}`; //&append_to_response=sources`;
+  //let movieId= "1159475"
+  let apiKey = "yIOIuRIvm5qFssBdLKwDsyrkCO4n8zJvADTXzBnT";
+  //let url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}`; //&append_to_response=sources`;
+  let baseUrl = window.location.href.split('?')[0]; // remove any existing query string
+  window.location.href = `${baseUrl}?id=${movieId}`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       setMovie(data);
       console.log(data);
     });
+}
+
+
+function setMovie(data) {
+  console.log(data);
+  // Check the value of the "direction" property
+  // ...
 }
