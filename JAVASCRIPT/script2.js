@@ -34,6 +34,12 @@ function setMovie(data) {
   format.innerHTML = data.format;
 }
 
+function setMovie(data) {
+  console.log(data);
+  // Check the value of the "direction" property
+  // ...
+}
+
 function getMovie(movieId) {
   //let movieId="3173903"
   let apiKey = "GlgR550tZqXd7XRX5w5FXfiEbxZ1TBMbrb6ZM9Tm";

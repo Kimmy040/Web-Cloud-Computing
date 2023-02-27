@@ -5,6 +5,30 @@
             "name": "http://127.0.0.1:3000/html/mainPage.html",
             "request": "launch",
             "url": "http://127.0.0.1:3000/html/mainPage.html"
+        },
+        {
+            "type": "chrome",
+            "name": "http://127.0.0.1:3000/HTML/movieDetails.html",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/HTML/movieDetails.html"
+        },
+        {
+            "type": "chrome",
+            "name": "http://127.0.0.1:3000/HTML/movieDetails1",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/HTML/movieDetails1"
+        },
+        {
+            "type": "chrome",
+            "name": "http://127.0.0.1:3000/HTML/main.html",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/HTML/main.html"
+        },
+        {
+            "type": "chrome",
+            "name": "http://127.0.0.1:3000/HTML/movieDetails-Edit.html",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/HTML/movieDetails-Edit.html"
         }
     ]
 }
