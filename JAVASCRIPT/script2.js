@@ -6,29 +6,29 @@ function setMovie(data) {
   let plot = document.getElementById("plot");
   plot.innerHTML = data.plot_overview;
   let genre = document.getElementById("genre");
-  genre.innerHTML = data.genre_names;
-  let rating = document.getElementById("user_rating");
-  rating.innerHTML = data.user_rating;
+  genre.innerHTML = data.genre_names ? data.genre_names.map(genre_names => genre_names.name).join(", ") : "Undefined";
+  let rating = document.getElementById("rating");
+  rating.innerHTML = data.user_rating ? data.user_rating : "Undefined";
   let year = document.getElementById("year");
-  year.innerHTML = data.year;
+  year.innerHTML = data.year ? data.year : "Undefined";
   let platform = document.getElementById("platform");
   platform.innerHTML = data.sources; //Needs fix
   let duration = document.getElementById("duration");
-  duration.innerHTML = data.runtime_minutes;
+  duration.innerHTML = data.runtime_minutes ? data.runtime_minutes : "Undefined";
   let type = document.getElementById("type");
-  type.innerHTML = data.type;
+  type.innerHTML = data.type ? data.type : "Undefined";
   let posterimg = document.getElementById("poster");
-  posterimg.innerHTML = `<img width="800px" src="${data.poster}">`;
+  posterimg.innerHTML = `<img width="800px" src="${data.poster}">` ? `<img width="800px" src="${data.poster}">` : `<img width="800px" src="../IMAGES/missingposter.png">`;
   let original_language = document.getElementById("original_language");
-  original_language.innerHTML = data.original_language;
+  original_language.innerHTML = data.original_language ? data.original_language : "Undefined";
   let release_date = document.getElementById("release_date");
-  release_date.innerHTML = data.release_date;
+  release_date.innerHTML = data.release_date ? data.release_date : "Undefined";
   let tv_show = document.getElementById("type");  
-  tv_show.innerHTML = data.type;
+  tv_show.innerHTML = data.type ? data.type : "Undefined";
   let runtime_minutes = document.getElementById("runtime_minutes");
-  runtime_minutes.innerHTML = data.runtime_minutes;
+  runtime_minutes.innerHTML = data.runtime_minutes ? data.runtime_minutes : "Undefined";
   let format = document.getElementById("format");
-  format.innerHTML = data.format;
+  format.innerHTML = data.format ? data.format : "Undefined";
   
   trailer(data);
 }
@@ -36,7 +36,9 @@ function setMovie(data) {
 
 function trailer(data){
   let trailer = document.getElementById("trailer");
-  trailer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.trailer.id}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  const splitUrl = data.trailer.split("v=")
+  const youtubeId = splitUrl[1]
+  trailer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${youtubeId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
 }
 
 
@@ -68,28 +70,6 @@ function getMovie() {
       console.error(err);
       alert('Failed to fetch movie details');
     });
-
-    fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to fetch movie videos');
-      }
-      return response.json();
-    })
-    .then(data => {
-      const trailer = data.videos.find(video => video.type === 'Trailer' && video.site === 'YouTube');
-      if (trailer) {
-        const trailerId = trailer.key;
-        console.log(trailerId);
-        trailer({ trailer: { id: trailerId } });
-      } else {
-        console.log('No trailer found');
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert('Failed to fetch movie videos');
-    })
 }
 
 document.addEventListener('DOMContentLoaded', function() {

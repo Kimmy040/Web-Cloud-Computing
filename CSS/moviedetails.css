@@ -20,9 +20,8 @@ body {
 }
 .div3 {
   grid-area: 2 / 4 / 4 / 6;
-  align-items: left;
-  left: 45%;
-  right: 45%;
+  align-items: center;
+
 
 }
 .div4 {
