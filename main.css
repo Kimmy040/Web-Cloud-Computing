@@ -43,13 +43,6 @@ button:hover {
   margin-top: 5px;
 }
 
-.randomoutput {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 5px;
-}
-
 figure {
   height: 50vh;
   margin: 20px;

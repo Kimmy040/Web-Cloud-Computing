@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Imdb 2</title>
+    <link rel="stylesheet" href="../CSS/style2.css">
+</head>
+<body>
+   
+    <header>
+        <div class="title">
+          <a href="main.html">Watchmode</a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="main.html">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="favourites.html">Favourites</a></li>
+          </ul>
+        </nav>
+        <link rel="stylesheet" href="../CSS/bar.css">
+      </header>
+
+    <div>
+        <p id="title"></p>
+    </div>
+    <section>
+    <div class="parent">
+        <div class="div2">
+        <ul class="nav">
+           <li> <span id="similar_titles">Suggesting Similar Movies : in The Api he suggests movies id similar to that one </span> </br></li>
+        </ul>
+        <span id="'trailer"></span>
+        <iframe src="https://www.youtube.com/embed/XZ8daibM3AE"></iframe> <!--width="400" height="325"-->
+        </div>
+        <div class="div1">
+        <div id="poster" class="div1"><img src="https://cdn.watchmode.com/posters/03173903_poster_w185.jpg" alt=""></div>
+        </div>
+       
+        <div class="div3">
+            Type: <span id="type"></span> </br>
+            Genre: <span id="genre"></span> </br>
+            Year: <span id="year"></span> </br>
+            Rating: <span id="rating"></span> </br> 
+            Platform: <span id="platform"></span> </br>
+            Duration: <span id="duration"></span> </br>
+            Episodes: <span id="episodes"></span> </br>
+            Language : <span id="original_language"></span> </br>
+            Release Date : <span id="release_date"></span> </br>
+            Score : <span id="critic_score"></span> </br> 
+            User Rating : <span id="user_rating"></span> </br>
+            Runtime minutes :<span id="runtime_minutes"></span> </br>
+            Format : <span id="format"></span> </br>
+        </div>
+
+       <div class="div5">
+        <h3 id="plot"></h3>
+       </div>
+    </div>
+    </section>
+    <footer>
+        <p>Streaming data powered by <a href="https://api.watchmode.com/">Watchmode.com</a></p>
+    </footer>
+    <script src="../JAVASCRIPT/script2.js">
+       getMovie();
+    </script>
+</body>
+</html>
