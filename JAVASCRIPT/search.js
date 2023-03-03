@@ -1,4 +1,4 @@
-let APIKEY = "OXqXnLlneiscmdivibmgdq12PcIMWc5u4WBO8gHl";
+let APIKEY = "GlgR550tZqXd7XRX5w5FXfiEbxZ1TBMbrb6ZM9Tm";
 
 function searchResults(content, str) {
   const container = document.getElementById('container');

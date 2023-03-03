@@ -42,7 +42,7 @@ function getMovie() {
     return;
   }
 
-  const apiKey = "yIOIuRIvm5qFssBdLKwDsyrkCO4n8zJvADTXzBnT";
+  const apiKey = "GlgR550tZqXd7XRX5w5FXfiEbxZ1TBMbrb6ZM9Tm";
   const url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}`;
 
   fetch(url)
