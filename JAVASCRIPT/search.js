@@ -1,4 +1,4 @@
-let APIKEY = "GlgR550tZqXd7XRX5w5FXfiEbxZ1TBMbrb6ZM9Tm";
+let APIKEY = "yIOIuRIvm5qFssBdLKwDsyrkCO4n8zJvADTXzBnT";
 
 function searchResults(content, str) {
   const container = document.getElementById('container');
@@ -16,7 +16,13 @@ function searchResults(content, str) {
       let fc = document.createElement("figcaption");
       img.src = content.results[i].image_url;
       img.alt = content.results[i].name;
-      fc.textContent = `${content.results[i].name} ${content.results[i].year}`;
+      img.onerror = function() {
+        this.src = '../IMAGES/missingposter.png'; // replace with missing poster image
+      };
+      fc.textContent = content.results[i].name;
+      if (content.results[i].year !== null) {
+        fc.textContent += ` ${content.results[i].year}`;
+      }
       fig.appendChild(img);
       fig.appendChild(fc);
       // add event listener to redirect to movieDetails.html
@@ -33,7 +39,13 @@ function searchResults(content, str) {
       let fc = document.createElement("figcaption");
       img.src = content.results[0].image_url;
       img.alt = content.results[0].name;
-      fc.textContent = `${content.results[0].name} ${content.results[0].year}`;
+      img.onerror = function() {
+        this.src = '../IMAGES/missingposter.png'; // replace with missing poster image
+      };
+      fc.textContent = content.results[i].name;
+      if (content.results[0].year !== null) {
+        fc.textContent += ` ${content.results[0].year}`;
+      }
       fig.appendChild(img);
       fig.appendChild(fc);
       // add event listener to redirect to movieDetails.html
