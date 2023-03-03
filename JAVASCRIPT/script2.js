@@ -1,3 +1,4 @@
+
 function setMovie(data) {
   console.log(data);
   let title = document.getElementById("title");
@@ -17,7 +18,7 @@ function setMovie(data) {
   let type = document.getElementById("type");
   type.innerHTML = data.type;
   let posterimg = document.getElementById("poster");
-  posterimg.innerHTML = `<img width="100px" src="${data.poster}">`;
+  posterimg.innerHTML = `<img width="300px" src="${data.poster}">`;
   let original_language = document.getElementById("original_language");
   original_language.innerHTML = data.original_language;
   let release_date = document.getElementById("release_date");
@@ -26,11 +27,20 @@ function setMovie(data) {
   tv_show.innerHTML = data.type;
   let runtime_minutes = document.getElementById("runtime_minutes");
   runtime_minutes.innerHTML = data.runtime_minutes;
-  let similar_titles = document.getElementById("similar_titles");
-  similar_titles.innerHTML = data.similar_titles;
   let format = document.getElementById("format");
   format.innerHTML = data.format;
+
+  trailer(data);
 }
+
+function trailer(data) {
+  const trailerId = data.trailer.id;
+  console.log(trailerId);
+  const trailerElem = document.getElementById('trailer');
+  trailerElem.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${trailerId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+}
+
+
 
 function getMovie() {
   const queryString = window.location.search;
