@@ -16,9 +16,9 @@ input[type="search"] {
   border: none;
   outline: 2px solid #305882;
   font-size: 16px;
-  width: 300px;
+  width: 25vw;
   max-width: 100%;
-  margin-right: 10px;
+  margin-right: 0.7vw;
 }
 
 button {
@@ -35,6 +35,9 @@ button {
 button:hover {
   background-color: #0062cc;
 }
+button + button {
+  margin-left: 0.7vw;
+}
 
 .output {
   display: flex;
@@ -48,6 +51,7 @@ button:hover {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 5px;
+  text-align: center;
 }
 
 figure {

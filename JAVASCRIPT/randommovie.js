@@ -51,7 +51,9 @@ function shuffle(array) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=${String.fromCharCode(97 + Math.floor(Math.random() * 26))}`;
+  //let randomLetter = String.fromCharCode(97 + Math.floor(Math.random() * 26))
+  let randomLetter = 'house'
+  let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=${randomLetter}`;
   console.log(url);
   fetch(url)
     .then(response => response.json())
@@ -60,6 +62,24 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error(err);
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const shuffleButton = document.getElementById("shuffle-button");
+  const container = document.getElementById("container");
+
+  shuffleButton.addEventListener("click", () => {
+    let randomLetter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+    let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=${randomLetter}`;
+    console.log(url);
+    fetch(url)
+      .then(response => response.json())
+      .then(randoms => {randomSearchResults(randoms)})
+      .catch(err => {
+        console.error(err);
+      });
+  });
+});
+
 
   
   
