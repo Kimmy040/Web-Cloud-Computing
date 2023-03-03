@@ -2,40 +2,40 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Imdb 2</title>
+    <title>Movie Details</title>
     <link rel="stylesheet" href="../CSS/style2.css">
 </head>
 <body>
     <header>
-        <p id="title"> Breaking Bad</p>
+        <p id="title"></p>
     </header>
     <section>
     <div class="parent">
         <div class="div2">
+            <span id="trailer"></span>
         <ul class="nav">
-           <li> <span id="similar_titles">Suggesting Similar Movies : in The Api he suggests movies id similar to that one </span> </br></li>
+           <li> <span id="similar_movie_title">Suggesting Similar Movies : in The Api he suggests movies id similar to that one </span> </br></li>
         </ul>
-        <span id="'trailer"></span>
-        <iframe src="https://www.youtube.com/embed/XZ8daibM3AE"></iframe> <!--width="400" height="325"-->
+        
+        <!--iframe src="https://www.youtube.com/embed/XZ8daibM3AE"></iframe-->
         </div>
         <div class="div1">
         <div id="poster" class="div1"><img src="https://cdn.watchmode.com/posters/03173903_poster_w185.jpg" alt=""></div>
         </div>
        
         <div class="div3">
-            <span id="type">Type :</span> </br>
-            Original title :<span id ="original_title"></span>
-            Genre :<span id="genre"></span> </br>
-            Year :<span id="year"></span> </br>
-            Rating :<span id="rating"></span> </br> 
-            Platform :<span id="platform"></span> </br>
-            Duration :<span id="duration"></span> </br>
-            Episodes :<span id="episodes"></span> </br>
-            Language :<span id="original_language"></span> </br>
-            Release Date :<span id="release_date"></span> </br>
-            Score :<span id="critic_score"></span> </br> 
+            Type: <span id="type"></span> </br>
+            Genre: <span id="genre"></span> </br>
+            Year: <span id="year"></span> </br>
+            Rating: <span id="rating"></span> </br> 
+            Platform: <span id="platform"></span> </br>
+            Duration: <span id="duration"></span> </br>
+            Episodes: <span id="episodes"></span> </br>
+            Language : <span id="original_language"></span> </br>
+            Release Date : <span id="release_date"></span> </br>
+            Score : <span id="critic_score"></span> </br> 
             User Rating : <span id="user_rating"></span> </br>
-            Runtime minutes : <span id="runtime_minutes"></span> </br>
+            Runtime minutes :<span id="runtime_minutes"></span> </br>
             Format : <span id="format"></span> </br>
         </div>
 
@@ -47,20 +47,12 @@
     <footer>
         <p>Streaming data powered by <a href="https://api.watchmode.com/">Watchmode.com</a></p>
     </footer>
-    <script src="../JAVASCRIPT/script2.js">
-    </script>
-    <!--script>
-        let id = new URLSearchParams(window.location.search).get('id')
-        console.log(id)
-       getMovie(id);
-    </script!-->
+    <script src="../JAVASCRIPT/script2.js"></script>
     <script>
-        let id = new URLSearchParams(window.location.search).get('id')
-        console.log(id)
-      
-        if (id) { // check if id is not null or empty
-          getMovie(id);
-        }
-      </script>
+        document.addEventListener('DOMContentLoaded',function() {
+            getMovie();
+        });
+    </script>
+
 </body>
 </html>

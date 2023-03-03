@@ -18,7 +18,7 @@ function setMovie(data) {
   let type = document.getElementById("type");
   type.innerHTML = data.type;
   let posterimg = document.getElementById("poster");
-  posterimg.innerHTML = `<img width="300px" src="${data.poster}">`;
+  posterimg.innerHTML = `<img width="800px" src="${data.poster}">`;
   let original_language = document.getElementById("original_language");
   original_language.innerHTML = data.original_language;
   let release_date = document.getElementById("release_date");
@@ -29,15 +29,14 @@ function setMovie(data) {
   runtime_minutes.innerHTML = data.runtime_minutes;
   let format = document.getElementById("format");
   format.innerHTML = data.format;
-
+  
   trailer(data);
 }
 
-function trailer(data) {
-  const trailerId = data.trailer.id;
-  console.log(trailerId);
-  const trailerElem = document.getElementById('trailer');
-  trailerElem.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${trailerId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+
+function trailer(data){
+  let trailer = document.getElementById("trailer");
+  trailer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.trailer.id}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 }
 
 
@@ -69,6 +68,28 @@ function getMovie() {
       console.error(err);
       alert('Failed to fetch movie details');
     });
+
+    fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch movie videos');
+      }
+      return response.json();
+    })
+    .then(data => {
+      const trailer = data.videos.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+      if (trailer) {
+        const trailerId = trailer.key;
+        console.log(trailerId);
+        trailer({ trailer: { id: trailerId } });
+      } else {
+        console.log('No trailer found');
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Failed to fetch movie videos');
+    })
 }
 
 document.addEventListener('DOMContentLoaded', function() {
