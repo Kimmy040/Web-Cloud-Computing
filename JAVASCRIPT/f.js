@@ -2,7 +2,7 @@
 function addMovie() {
     // Define the new movie information
     const newMovie = {
-        movieId: '1234', // replace with the actual movie ID
+        movieId: '1233', // replace with the actual movie ID
         poster: 'https://cdn.watchmode.com/posters/01397224_poster_w185.jpg', // replace with the URL of the movie's poster image
         title: 'Movie Header', // replace with the actual title of the movie
         year: 2022 // replace with the actual year the movie was released
@@ -49,7 +49,7 @@ function print() {
             deleteMovie(movie.movieId);
             cardElement.remove();
         });
-    cardElement.appendChild(deleteButton);
+        cardElement.appendChild(deleteButton);
 
         favoriteMoviesGridElement.appendChild(cardElement);
     })

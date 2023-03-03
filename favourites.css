@@ -10,9 +10,10 @@ main {
 }
 
 .output {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .movie-card {
@@ -21,11 +22,13 @@ main {
   align-items: center;
   padding: 20px;
   border: 1px solid #ccc;
+  opacity: 0.5;
 }
 
 .movie-card h2 {
   margin-bottom: 10px;
   font-size: 20px;
+  color: #fff;
 }
 
 .movie-card p {
