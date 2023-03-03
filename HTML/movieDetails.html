@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Movie Details</title>
-    <link rel="stylesheet" href="../CSS/style2.css">
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="Content-Security-Policy" content="default-src http: https: 'self';">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  </head>
+  <body>
     <header>
-        <p id="title"></p>
-    </header>
+      <div class="title">
+        <a href="main.html">Watchmode</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="main.html">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="favourites.html">Favourites</a></li>
+        </ul>
+      </nav>
+      <link rel="stylesheet" href="../CSS/moviedetails.css">
+      <link rel="stylesheet" href="../CSS/navigationbar.css">
+    </header> 
     <section>
     <div class="parent">
         <div class="div2">
@@ -40,6 +52,7 @@
         </div>
 
        <div class="div5">
+        <p id="title"></p>
         <h3 id="plot"></h3>
        </div>
     </div>
