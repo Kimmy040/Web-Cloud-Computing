@@ -51,9 +51,12 @@ function shuffle(array) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  //let randomLetter = String.fromCharCode(97 + Math.floor(Math.random() * 26))
-  let randomLetter = 'house'
-  let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=${randomLetter}`;
+// List of 100 most common words in movie titles
+const wordsList = 'the,of,a,and,in,to,for,with,on,at,from,by,an,is,his,her,she,him,he,they,their,them,it,that,this,be,but,or,as,up,who,out,not,one,all,into,has,are,we,was,you,me,my,your,our,can,will,love,man,woman,day,night,life,world,time,way,home,heart,mind,soul,body,death,game,war,king,queen,prince,princess,power,money,city,country,school,house,family,friends,adventure,journey,story,tale,legend,mystery,thriller,horror,comedy,drama,action,romance,fantasy,science,fiction,space,magic,force,hero,villain,battle,quest,treasure';
+const wordsArray = wordsList.split(',');
+const randomIndex = Math.floor(Math.random() * wordsArray.length);
+const randomWord = wordsArray[randomIndex];
+  let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=${randomWord}`;
   console.log(url);
   fetch(url)
     .then(response => response.json())
@@ -68,8 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("container");
 
   shuffleButton.addEventListener("click", () => {
-    let randomLetter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
-    let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=${randomLetter}`;
+    // List of 100 most common words in movie titles
+  const wordsList = 'the,of,a,and,in,to,for,with,on,at,from,by,an,is,his,her,she,him,he,they,their,them,it,that,this,be,but,or,as,up,who,out,not,one,all,into,has,are,we,was,you,me,my,your,our,can,will,love,man,woman,day,night,life,world,time,way,home,heart,mind,soul,body,death,game,war,king,queen,prince,princess,power,money,city,country,school,house,family,friends,adventure,journey,story,tale,legend,mystery,thriller,horror,comedy,drama,action,romance,fantasy,science,fiction,space,magic,force,hero,villain,battle,quest,treasure';
+  const wordsArray = wordsList.split(',');
+  const randomIndex = Math.floor(Math.random() * wordsArray.length);
+  const randomWord = wordsArray[randomIndex];
+    let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=${randomWord}`;
     console.log(url);
     fetch(url)
       .then(response => response.json())
