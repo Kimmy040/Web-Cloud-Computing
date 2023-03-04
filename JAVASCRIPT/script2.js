@@ -42,7 +42,7 @@ function trailer(data){
   let trailer = document.getElementById("trailer");
   const splitUrl = data.trailer.split("v=")
   const youtubeId = splitUrl[1]
-  if (data.trailer == null){
+  if (data.trailer == ""){
     trailer.innerHTML = "No trailer available"
   } else {
     trailer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${youtubeId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
