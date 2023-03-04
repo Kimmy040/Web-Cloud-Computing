@@ -1,3 +1,4 @@
+let movieId;
 
 function setMovie(data) {
   console.log(data);
@@ -20,7 +21,7 @@ function setMovie(data) {
   let type = document.getElementById("type");
   type.innerHTML = data.type ? data.type : "Undefined";
   let posterimg = document.getElementById("poster");
-  posterimg.innerHTML = `<img width="800px" src="${data.poster}">` ? `<img width="800px" src="${data.poster}">` : `<img width="800px" src="../IMAGES/missingposter.png">`;
+  posterimg.innerHTML = `<img width="800px" src="${data.poster}">` ? `<img width="800px" id="posterimg" src="${data.poster}">` : `<img width="800px" src="../IMAGES/missingposter.png">`;
   let original_language = document.getElementById("original_language");
   original_language.innerHTML = data.original_language ? data.original_language : "Undefined";
   let release_date = document.getElementById("release_date");
@@ -49,12 +50,35 @@ function trailer(data){
 }
 
 
+function addMovie() {
+  // Define the new movie information
+  let poster = document.getElementById('posterimg').src
+  let title = document.getElementById('title').textContent
+  let year = document.getElementById('year').textContent
+
+  const newMovie = {
+      movieId: movieId,
+      poster: poster, 
+      title: title, 
+      year: year 
+  };
+  
+  // Get the user's favorite movie list from local storage
+  const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || {};
+  
+  console.log(newMovie)
+  // Add the new movie to the list
+  favoriteMovies[newMovie.movieId] = newMovie;
+  
+  // Store the updated favorite movie list in local storage
+  localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));    
+}
 
 
 function getMovie() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const movieId = urlParams.get('id');
+  movieId = urlParams.get('id');
   if (!movieId) {
     console.error('Missing movie ID in URL');
     alert('Missing movie ID in URL');

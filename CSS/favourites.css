@@ -51,4 +51,10 @@ main {
   cursor: pointer;
 }
   
+.movie-card img:hover,
+.movie-card h2:hover,
+.movie-card button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
  

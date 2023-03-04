@@ -2,7 +2,7 @@
 function addMovie() {
     // Define the new movie information
     const newMovie = {
-        movieId: '1233', // replace with the actual movie ID
+        movieId: '1234', // replace with the actual movie ID
         poster: 'https://cdn.watchmode.com/posters/01397224_poster_w185.jpg', // replace with the URL of the movie's poster image
         title: 'Movie Header', // replace with the actual title of the movie
         year: 2022 // replace with the actual year the movie was released
@@ -16,9 +16,7 @@ function addMovie() {
     favoriteMovies[newMovie.movieId] = newMovie;
     
     // Store the updated favorite movie list in local storage
-    localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
-
-    
+    localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));    
 }
 
 function print() {
@@ -41,7 +39,12 @@ function print() {
 
         const posterElement = document.createElement('img');
         posterElement.src = movie.poster;
+        posterElement.addEventListener("click", () => {
+            window.location.href = `movieDetails.html?id=${movie.movieId}`;
+          });
         cardElement.appendChild(posterElement);
+
+        
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
