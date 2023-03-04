@@ -6,8 +6,8 @@ function setMovie(data) {
   title.innerHTML = data.title;
   let plot = document.getElementById("plot");
   plot.innerHTML = data.plot_overview;
-  var genre = data.genre_names ? data.genre_names : "Undefined";
-  document.getElementById("genre").innerHTML = genre;
+  let genre = document.getElementById("genre");
+  genre.innerHTML = data.genre_names ? data.genre_names : "Undefined";
   let rating = document.getElementById("rating");
   rating.innerHTML = data.user_rating ? data.user_rating : "Undefined";
   let critic_score = document.getElementById("critic_score");
@@ -43,7 +43,7 @@ function trailer(data){
   const splitUrl = data.trailer.split("v=")
   const youtubeId = splitUrl[1]
   if (data.trailer == ""){
-    trailer.innerHTML = "No trailer available"
+    trailer.innerHTML = ""
   } else {
     trailer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${youtubeId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
   } 
