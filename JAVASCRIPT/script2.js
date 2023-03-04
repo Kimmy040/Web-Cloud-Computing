@@ -50,6 +50,7 @@ function trailer(data){
 }
 
 
+
 function addMovie() {
   // Define the new movie information
   let poster = document.getElementById('posterimg').src
