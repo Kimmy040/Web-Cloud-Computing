@@ -34,15 +34,63 @@ function setMovie(data) {
   release_date.innerHTML = data.release_date ? data.release_date : "Unknown";
   let tv_show = document.getElementById("type");  
   tv_show.innerHTML = data.type ? data.type : "Unknown";
+  similarTitles = data.similar_titles
+  displaySimilarMovies(similarTitles.slice(0, 2))
   //let format = document.getElementById("format"); //Needs to connect to sources
   //format.innerHTML = data.sources.format ? data.sources.format : "Undefined";
-  
+
   //Call the trailer function
   trailer(data);
 
   //Call the cast_crew function
   cast_crew(data);
 
+}
+
+function displaySimilarMovies(similarIds) {
+  const apiKey = "GlgR550tZqXd7XRX5w5FXfiEbxZ1TBMbrb6ZM9Tm";
+
+  similarIds.forEach(id => {console.log(id)})
+  const similarMoviesGridElement = document.querySelector(".similarTitles");
+
+  similarIds.forEach(id => {
+    const url = `https://api.watchmode.com/v1/title/${id}/details/?apiKey=${apiKey}`;
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch similar movie details');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data)
+          console.log(data)
+          const cardElement = document.createElement('div');
+          cardElement.classList.add('movie-card');
+
+          const titleElement = document.createElement('h3');
+          titleElement.textContent = data.title;
+          cardElement.appendChild(titleElement);
+
+          const yearElement = document.createElement('p');
+          yearElement.textContent = data.year;
+          cardElement.appendChild(yearElement);
+
+          const posterElement = document.createElement('img');
+          posterElement.src = data.poster;
+          posterElement.addEventListener("click", () => {
+              window.location.href = `movieDetails.html?id=${data.id}`;
+            });
+          cardElement.appendChild(posterElement);
+
+          similarMoviesGridElement.appendChild(cardElement);
+
+        })
+      .catch(err => {
+        console.error(err);
+        alert('Failed to fetch similar movie details');
+      });
+  });
 }
 
 
@@ -141,7 +189,7 @@ function getMovie() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  getMovie();
-});
+//document.addEventListener('DOMContentLoaded', function() {
+//  getMovie();
+// });
 
