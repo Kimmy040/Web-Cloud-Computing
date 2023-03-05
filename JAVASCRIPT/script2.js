@@ -4,35 +4,44 @@ function setMovie(data) {
   console.log(data);
   let title = document.getElementById("title");
   title.innerHTML = data.title;
+  let original_title = document.getElementById("original_title");
+  if (data.original_title == data.title){
+    original_title.innerHTML = "";
+  } else {
+    original_title.innerHTML = data.original_title;
+  }
   let plot = document.getElementById("plot");
   plot.innerHTML = data.plot_overview;
   let genre = document.getElementById("genre");
-  genre.innerHTML = data.genre_names ? data.genre_names : "Undefined";
+  genre.innerHTML = data.genre_names ? data.genre_names : "Unknown";
   let rating = document.getElementById("rating");
-  rating.innerHTML = data.user_rating ? data.user_rating : "Undefined";
+  rating.innerHTML = data.user_rating ? data.user_rating : "Unknown";
   let critic_score = document.getElementById("critic_score");
-  critic_score.innerHTML = data.critic_score ? data.critic_score : "Undefined";
+  critic_score.innerHTML = data.critic_score ? data.critic_score : "Unknown";
   let year = document.getElementById("year");
-  year.innerHTML = data.year ? data.year : "Undefined";
+  year.innerHTML = data.year ? data.year : "Unknown";
   //let platform = document.getElementById("platform");
   //platform.innerHTML = data.sources; //Needs fix
   let duration = document.getElementById("duration");
-  duration.innerHTML = data.runtime_minutes ? data.runtime_minutes : "Undefined";
+  duration.innerHTML = data.runtime_minutes ? data.runtime_minutes : "Unknown";
   let type = document.getElementById("type");
-  type.innerHTML = data.type ? data.type : "Undefined";
+  type.innerHTML = data.type ? data.type : "Unknown";
   let posterimg = document.getElementById("poster");
-  posterimg.innerHTML = `<img width="800px" src="${data.poster}">` ? `<img width="800px" id="posterimg" src="${data.poster}">` : `<img width="800px" src="../IMAGES/missingposter.png">`;
+  posterimg.innerHTML = data.poster ? `<img width="800px" id="posterimg" src="${data.poster}">` : `<img width="800px" src="../IMAGES/missingposter.png">`;
   let original_language = document.getElementById("original_language");
-  original_language.innerHTML = data.original_language ? data.original_language : "Undefined";
+  original_language.innerHTML = data.original_language ? data.original_language : "Unknown";
   let release_date = document.getElementById("release_date");
-  release_date.innerHTML = data.release_date ? data.release_date : "Undefined";
+  release_date.innerHTML = data.release_date ? data.release_date : "Unknown";
   let tv_show = document.getElementById("type");  
-  tv_show.innerHTML = data.type ? data.type : "Undefined";
+  tv_show.innerHTML = data.type ? data.type : "Unknown";
   //let format = document.getElementById("format"); //Needs to connect to sources
   //format.innerHTML = data.sources.format ? data.sources.format : "Undefined";
   
   //Call the trailer function
   trailer(data);
+
+  //Call the cast_crew function
+  cast_crew(data);
 
 }
 
@@ -48,6 +57,33 @@ function trailer(data){
     trailer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${youtubeId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
   } 
 }
+
+function cast_crew(data){
+  console.log(data.cast_crew)
+  const cast = data.cast_crew.filter(item => item.type == "Cast");
+  const crew = data.cast_crew.filter(item => item.type == "Crew");
+
+  //Create a table
+  let castTable = "<table><tr><th>Name</th><th>Role</th><th>Headshot</th></tr>";
+  //Loop through the cast array
+  cast.forEach(item => {
+    castTable += `<tr><td>${item.full_name || "unknown"}</td><td>${item.role || "unknown"}</td><td><img src="${item.headshot_url}" width="100"></td></tr>`;
+  });
+  castTable += "</table>";
+  document.getElementById("cast").innerHTML = castTable;
+
+  //Create a table
+  let crewTable = "<table><tr><th>Name</th><th>Role</th><th>Headshot</th></tr>";
+  //Loop through the crew array
+  crew.forEach(item => {
+    crewTable += `<tr><td>${item.full_name || "unknown"}</td><td>${item.role || "unknown"}</td><td><img src="${item.headshot_url}" width="100"></td></tr>`;
+    });
+  crewTable += "</table>";
+  document.getElementById("crew").innerHTML = crewTable;
+  
+}
+
+
 
 
 
@@ -87,7 +123,7 @@ function getMovie() {
   }
 
   const apiKey = "GlgR550tZqXd7XRX5w5FXfiEbxZ1TBMbrb6ZM9Tm";
-  const url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}`;
+  const url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}&append_to_response=cast-crew`;
 
   fetch(url)
     .then(response => {

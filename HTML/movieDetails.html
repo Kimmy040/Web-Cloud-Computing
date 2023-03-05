@@ -14,7 +14,7 @@
       <nav>
         <ul>
           <li><a href="main.html">Home</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="favourites.html">Favourites</a></li>
         </ul>
       </nav>
@@ -25,10 +25,14 @@
     <div class="parent">
         <div class="div2">
             <span id="trailer"></span>
+
         <ul class="nav">
            <li> <span id="similar_movie_title">Suggesting Similar Movies : in The Api he suggests movies id similar to that one </span> </br></li>
         </ul>
-        
+        </div>
+        <div class="div4">
+          <span id="cast"></span>
+          <span id="crew"></span>
         </div>
         <div class="div1">
         <div id="poster" class="div1"></div>
@@ -50,7 +54,8 @@
 
        <div class="div5">
         <div class="title-container">
-          <p id="title"></p>
+          <p id="title"></p> </br>
+          <p id="original_title"></p> </br>
           <button id="button" onclick="addMovie()">Add to favourites</button>
         </div>
         <h3 id="plot"></h3>
