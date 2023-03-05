@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
     background-image: url('../IMAGES/movies.png');
-    background-size: cover;
+    background-size: contain;
     max-width: 100%;
   }
   
