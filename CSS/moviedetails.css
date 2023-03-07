@@ -134,3 +134,22 @@ ul.nav > li > a {
   font-weight: bold;
   align-items: center;
 }
+
+.favButton {
+  display: inline-block;
+  position: relative;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 4em;
+  height: 4em;
+  background: transparent;
+  cursor: pointer;
+}
+
+#star {
+  display: inline-block;
+  position: relative;
+  background-color: transparent;
+  size: 0.1em;
+}

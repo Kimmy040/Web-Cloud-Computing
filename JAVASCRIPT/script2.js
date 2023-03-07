@@ -146,7 +146,18 @@ function cast_crew(data){
 
 
 
+function checkFavorites(movieId){
+  const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || {};
+  const starImg = document.querySelector('#star');
 
+  if (movieId in favoriteMovies) {
+    // Movie is in favorites, change image to yellow star
+    starImg.src = '../IMAGES/yellow-star.png';
+  } else {
+    // Movie is not in favorites, change image to white star
+    starImg.src = '../IMAGES/empty-star.png';
+  }
+}
 
 function addMovie() {
   // Define the new movie information
@@ -163,13 +174,19 @@ function addMovie() {
   
   // Get the user's favorite movie list from local storage
   const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || {};
-  
-  console.log(newMovie)
-  // Add the new movie to the list
+
+  if (movieId in favoriteMovies) {
+    // Remove the movie from the list
+    delete favoriteMovies[movieId];
+  } else {
+    // Add the new movie to the list
   favoriteMovies[newMovie.movieId] = newMovie;
+  }
   
   // Store the updated favorite movie list in local storage
-  localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));    
+  localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));  
+  
+  checkFavorites(movieId)
 }
 
 
@@ -195,6 +212,7 @@ function getMovie() {
     })
     .then(data => {
       setMovie(data);
+      checkFavorites(movieId)
     })
     .catch(err => {
       console.error(err);
