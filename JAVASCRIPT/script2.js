@@ -39,6 +39,7 @@ function setMovie(data) {
   //let format = document.getElementById("format"); //Needs to connect to sources
   //format.innerHTML = data.sources.format ? data.sources.format : "Undefined";
 
+  platform(data)
   //Call the trailer function
   trailer(data);
 
@@ -48,7 +49,7 @@ function setMovie(data) {
 }
 
 function displaySimilarMovies(similarIds) {
-  const apiKey = "Ysrr6mfHWkD5IHRC6m2NpZpJED4djCB4HUuduA3f";
+  const apiKey = "feAyW4jkRKfNDjp7FMKI69hkT6cyahzHwhiUIkPj";
 
   similarIds.forEach(id => {console.log(id)})
   const similarMoviesGridElement = document.querySelector(".similarTitles");
@@ -109,6 +110,21 @@ function trailer(data){
   } else {
     trailer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${youtubeId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
   } 
+}
+
+function platform(data) {
+  console.log(data.sources)
+  let output = document.getElementById("platform"); 
+  let platforms = '';
+  data.sources.forEach(platform => {
+    if (platform.type == "sub") {
+      if (platforms !== '') {
+        platforms += ', ';
+      }
+      platforms += `<a href="${platform.web_url}" target="_blank">${platform.name}</a>`;
+    }
+  });
+  output.innerHTML = platforms;
 }
 
 function cast_crew(data){
@@ -200,8 +216,8 @@ function getMovie() {
     return;
   }
 
-  const apiKey = "Ysrr6mfHWkD5IHRC6m2NpZpJED4djCB4HUuduA3f";
-  const url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}&append_to_response=cast-crew`;
+  const apiKey = "feAyW4jkRKfNDjp7FMKI69hkT6cyahzHwhiUIkPj";
+  const url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}&append_to_response=cast-crew,sources`;
 
   fetch(url)
     .then(response => {
