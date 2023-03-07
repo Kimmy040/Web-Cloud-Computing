@@ -1,82 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="Content-Security-Policy" content="default-src http: https: 'self';">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="Content-Security-Policy" content="default-src http: https: 'self';">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="../CSS/simple-grid.css">
+
+  <link rel="stylesheet" href="../CSS/moviedetails.css">
+
+</head>
+
+<body>
+  <header>
+    <div class="title">
+      <a href="main.html">Watchmode</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="main.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="favourites.html">Favourites</a></li>
+      </ul>
+    </nav>
     <link rel="stylesheet" href="../CSS/moviedetails.css">
-  </head>
-  <body>
-    <header>
-      <div class="title">
-        <a href="main.html">Watchmode</a>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="main.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="favourites.html">Favourites</a></li>
-        </ul>
-      </nav>
-      <link rel="stylesheet" href="../CSS/moviedetails.css">
-      <link rel="stylesheet" href="../CSS/navigationbar.css">
-    </header> 
-    <section>
-    <div class="parent">
-        <div class="div2">
-            <span id="trailer"></span>
-
-        <ul class="nav">
-           <li> <span id="similar_movie_title">Suggesting Similar Movies : in The Api he suggests movies id similar to that one </span> </br></li>
-        </ul>
+    <link rel="stylesheet" href="../CSS/navigationbar.css">
+  </header>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="div5">
+            <div class="title-container">
+              <p id="title"></p> </br>
+              <p id="original_title"></p> </br>
+              <button id="button" onclick="addMovie()">Add to favourites</button>
+            </div>
+            <h3 id="plot"></h3>
+          </div>
         </div>
-        <div class="div4">
-          <div class="similarTitles"></div>
-          <span id="cast"></span>
-          <span id="crew"></span>
+        <div class="col-6">
+          <div class="div1">
+            <div id="poster" class="div1"></div>
+          </div>
         </div>
-        <div class="div1">
-        <div id="poster" class="div1"></div>
-        </div>
-       
-        <div class="div3">
+        <div class="col-6">
+          <div class="div3">
             <b id="address">Type:</b> <span id="type"></span> </br>
-            <b id="address">Genre:</b>  <span id="genre"> </span> </br>
+            <b id="address">Genre:</b> <span id="genre"> </span> </br>
             <b id="address">Year:</b> <span id="year"></span> </br>
-            <b id="address">Rating:</b> <span id="rating"></span> </br> 
+            <b id="address">Rating:</b> <span id="rating"></span> </br>
             <!--span id="platform">Platform: </span> </br-->
             <b id="address">Duration:</b> <span id="duration"></span> minutes </br>
             <!--span id="episodes">Episodes: </span> </br-->
             <b id="address">Language :</b> <span id="original_language"></span> </br>
             <b id="address">Release Date :</b> <span id="release_date"></span> </br>
-            <b id="address">Score :</b> <span id="critic_score"></span> </br> 
+            <b id="address">Score :</b> <span id="critic_score"></span> </br>
             <!--span id="format">Format : </span> </br-->
+          </div>
         </div>
+        <div class="col-12">
+          <div class="div4">
+            <span id="cast"></span>
+            <span id="crew"></span>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="div2">
+            <span id="trailer"></span>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="div6">
+          <ul class="nav">
+            <li id="address">Recommended Similar Movies </li></br>
+          </ul>
+          <div class="similarTitles"></div>
 
-       <div class="div5">
-        <div class="title-container">
-          <p id="title"></p> </br>
-          <p id="original_title"></p> </br>
-          <button id="button" onclick="addMovie()">Add to favourites</button>
+        
         </div>
-        <h3 id="plot"></h3>
-       </div>
+      </div>
     </div>
 
-
-
-    </section>
-    <footer>
-        <p>Streaming data powered by <a href="https://api.watchmode.com/">Watchmode.com</a></p>
-    </footer>
-    <script src="../JAVASCRIPT/script2.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded',function() {
-            getMovie();
-        });
-    </script>
+  </section>
+  <footer>
+    <p>Streaming data powered by <a href="https://api.watchmode.com/">Watchmode.com</a></p>
+  </footer>
+  <script src="../JAVASCRIPT/script2.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      getMovie();
+    });
+  </script>
 
 </body>
+
 </html>

@@ -1,4 +1,4 @@
-let movieId;
+//let movieId;
 
 function setMovie(data) {
   console.log(data);
@@ -35,7 +35,7 @@ function setMovie(data) {
   let tv_show = document.getElementById("type");  
   tv_show.innerHTML = data.type ? data.type : "Unknown";
   similarTitles = data.similar_titles
-  displaySimilarMovies(similarTitles.slice(0, 2))
+  displaySimilarMovies(similarTitles.slice(0, 5))
   //let format = document.getElementById("format"); //Needs to connect to sources
   //format.innerHTML = data.sources.format ? data.sources.format : "Undefined";
 
@@ -48,10 +48,11 @@ function setMovie(data) {
 }
 
 function displaySimilarMovies(similarIds) {
-  const apiKey = "GlgR550tZqXd7XRX5w5FXfiEbxZ1TBMbrb6ZM9Tm";
+  const apiKey = "Ysrr6mfHWkD5IHRC6m2NpZpJED4djCB4HUuduA3f";
 
   similarIds.forEach(id => {console.log(id)})
   const similarMoviesGridElement = document.querySelector(".similarTitles");
+
 
   similarIds.forEach(id => {
     const url = `https://api.watchmode.com/v1/title/${id}/details/?apiKey=${apiKey}`;
@@ -67,6 +68,10 @@ function displaySimilarMovies(similarIds) {
           console.log(data)
           const cardElement = document.createElement('div');
           cardElement.classList.add('movie-card');
+          cardElement.style.width = '10rem';
+          cardElement.style.display = 'inline-block';
+          cardElement.style.alignItems = 'center';
+
 
           const titleElement = document.createElement('h3');
           titleElement.textContent = data.title;
@@ -114,17 +119,25 @@ function cast_crew(data){
   //Create a table
   let castTable = "<table><tr><th>Name</th><th>Role</th><th>Headshot</th></tr>";
   //Loop through the cast array
-  cast.forEach(item => {
-    castTable += `<tr><td>${item.full_name || "unknown"}</td><td>${item.role || "unknown"}</td><td><img src="${item.headshot_url}" width="100"></td></tr>`;
+  cast.slice(0,4).forEach(item => {
+    let headshotSrc = item.headshot_url;
+    if (headshotSrc === "https://cdn.watchmode.com/profiles/empty_headshot.jpg"){
+      headshotSrc = "../IMAGES/missingposter.png"; 
+    }
+    castTable += `<tr><td>${item.full_name || "unknown"}</td><td>${item.role || "unknown"}</td><td><img src="${headshotSrc}" width="150px" height="150px"></td></tr>`;
   });
-  castTable += "</table>";
+  castTable += "</table>" ;
   document.getElementById("cast").innerHTML = castTable;
 
   //Create a table
   let crewTable = "<table><tr><th>Name</th><th>Role</th><th>Headshot</th></tr>";
   //Loop through the crew array
-  crew.forEach(item => {
-    crewTable += `<tr><td>${item.full_name || "unknown"}</td><td>${item.role || "unknown"}</td><td><img src="${item.headshot_url}" width="100"></td></tr>`;
+  crew.slice(0,4).forEach(item => {
+    let headshotSrc = item.headshot_url;
+    if (headshotSrc === "https://cdn.watchmode.com/profiles/empty_headshot.jpg"){
+      headshotSrc = "../IMAGES/missingposter.png"; 
+    }
+    crewTable += `<tr><td>${item.full_name || "unknown"}</td><td>${item.role || "unknown"}</td><td><img src="${headshotSrc}" width="150px" height="150px"></td></tr>`;
     });
   crewTable += "</table>";
   document.getElementById("crew").innerHTML = crewTable;
@@ -170,7 +183,7 @@ function getMovie() {
     return;
   }
 
-  const apiKey = "GlgR550tZqXd7XRX5w5FXfiEbxZ1TBMbrb6ZM9Tm";
+  const apiKey = "Ysrr6mfHWkD5IHRC6m2NpZpJED4djCB4HUuduA3f";
   const url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}&append_to_response=cast-crew`;
 
   fetch(url)
