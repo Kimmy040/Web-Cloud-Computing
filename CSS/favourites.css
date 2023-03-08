@@ -10,6 +10,7 @@ main {
   color: #fff;
 }
 
+/* Make a background and center objects in the output div*/
 .output {
   background-color: rgba(236, 236, 236, 0.802);
   color: rgba(44, 44, 44, 0.887);

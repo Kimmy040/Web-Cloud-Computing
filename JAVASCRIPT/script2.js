@@ -5,12 +5,6 @@ function setMovie(data) {
   console.log(data);
   let title = document.getElementById("title");
   title.innerHTML = data.title;
-  /*let original_title = document.getElementById("original_title");
-  if (data.original_title == data.title){
-    original_title.innerHTML = "";
-  } else {
-    original_title.innerHTML = data.original_title;
-  }*/
   let plot = document.getElementById("plot");
   plot.innerHTML = data.plot_overview;
   let genre = document.getElementById("genre");
@@ -50,7 +44,7 @@ function setMovie(data) {
   //format.innerHTML = data.sources.format ? data.sources.format : "Undefined";
 
   //Call the platform function
-  //platform(data)
+  platform(data)
 
   //Call the trailer function
   trailer(data);
@@ -125,17 +119,21 @@ function trailer(data){
 }
 
 function platform(data) {
-  console.log(data.sources)
+  console.log(data.sources.lenght)
   let output = document.getElementById("platform"); 
   let platforms = '';
-  data.sources.forEach(platform => {
-    if (platform.type == "sub") {
-      if (platforms !== '') {
-        platforms += ', ';
+  if (data.sources.lenght == undefined) {
+    platforms = " Not available"
+  } else {
+    data.sources.forEach(platform => {
+      if (platform.type == "sub") {
+        if (platforms !== '') {
+          platforms += ', ';
+        }
+        platforms += `<a href="${platform.web_url}" target="_blank">${platform.name}</a>`;
       }
-      platforms += `<a href="${platform.web_url}" target="_blank">${platform.name}</a>`;
-    }
-  });
+    });
+  }
   output.innerHTML = platforms;
 
 

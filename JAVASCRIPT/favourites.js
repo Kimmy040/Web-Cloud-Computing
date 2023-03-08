@@ -85,6 +85,7 @@ function deleteMovie(movieId) {
     updateChart()
   }
 
+  // Function to update the genres chart
 function updateChart() {
     const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || {};
 
