@@ -99,6 +99,8 @@ document.addEventListener("DOMContentLoaded", init);
     document.getElementById("btnSearch").addEventListener("click", ev => {
         // Prevent the default form submission behavior, which would cause the page to reload
         ev.preventDefault();
+        let output = document.querySelector(".output");
+        output.innerHTML = '<img src="../IMAGES/loader.gif" alt="Loading..." class="loader">';
         let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=`;
         // Get the search query entered by the user, remove leading and trailing whitespace
         let str = document.getElementById("search").value.trim(); 

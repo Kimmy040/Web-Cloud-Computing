@@ -1,3 +1,10 @@
+.loader {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10%;
+  height: 10vh;
+}
+
 form {
   display: flex;
   justify-content: center;
