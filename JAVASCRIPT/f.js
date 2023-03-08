@@ -37,7 +37,7 @@ function print() {
 
         favoriteMoviesGridElement.appendChild(cardElement);
         
-        if (movie.genre != undefined) {
+        if (movie.genre != undefined && movie.genre != "") {
             const genres = movie.genre.split(",");
             console.log(movie.genre)
             genres.forEach(genre => {
@@ -82,5 +82,33 @@ function deleteMovie(movieId) {
     // Store the updated favorite movie list in local storage
     localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
 
-    print()
+    updateChart()
   }
+
+function updateChart() {
+    const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || {};
+
+    const genreCount = {}; 
+
+    Object.values(favoriteMovies).forEach(movie => {
+        if (movie.genre != undefined && movie.genre != "") {
+            const genres = movie.genre.split(",");
+            console.log(movie.genre)
+            genres.forEach(genre => {
+                genreCount[genre] = genreCount[genre] ? genreCount[genre] + 1 : 1;
+            });
+        } 
+    })
+     // Re-render the chart with the updated data
+  const chartData = {
+    labels: Object.keys(genreCount),
+    datasets: [{
+      label: "Favorite Genre by number of movies",
+      data: Object.values(genreCount),
+      backgroundColor: "rgba(54, 162, 235)"
+    }]
+  };
+  const chart = Chart.getChart("genre-chart");
+  chart.data = chartData;
+  chart.update();
+}
