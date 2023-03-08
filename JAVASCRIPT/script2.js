@@ -4,12 +4,12 @@ function setMovie(data) {
   console.log(data);
   let title = document.getElementById("title");
   title.innerHTML = data.title;
-  let original_title = document.getElementById("original_title");
+  /*let original_title = document.getElementById("original_title");
   if (data.original_title == data.title){
     original_title.innerHTML = "";
   } else {
     original_title.innerHTML = data.original_title;
-  }
+  }*/
   let plot = document.getElementById("plot");
   plot.innerHTML = data.plot_overview;
   let genre = document.getElementById("genre");
@@ -35,7 +35,16 @@ function setMovie(data) {
   let tv_show = document.getElementById("type");  
   tv_show.innerHTML = data.type ? data.type : "Unknown";
   similarTitles = data.similar_titles
-  displaySimilarMovies(similarTitles.slice(0, 5))
+  if (Object.is(similarTitles, null)) {
+    const similarMoviesGridElement = document.querySelector(".similarTitles")
+    const textElement = document.createElement('p');
+    textElement.textContent = "No similar movies found";
+    similarMoviesGridElement.appendChild(textElement);
+  } else if (similarTitles.lenght < 5) {
+    displaySimilarMovies(similarTitles)
+  } else {
+    displaySimilarMovies(similarTitles.slice(0, 5))
+  }
   //let format = document.getElementById("format"); //Needs to connect to sources
   //format.innerHTML = data.sources.format ? data.sources.format : "Undefined";
 
