@@ -42,8 +42,8 @@ main {
 }
 
 .movie-card img {
-  height: 40vh;
-  width: 25vw;
+  height: 25vh;
+  width: 20vw;
   margin-bottom: 2vh;
   object-fit: contain;
 }

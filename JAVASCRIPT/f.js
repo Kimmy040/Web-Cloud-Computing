@@ -19,7 +19,7 @@ function print() {
         cardElement.appendChild(yearElement);
 
         const posterElement = document.createElement('img');
-        posterElement.src = movie.poster;
+        posterElement.src = movie.poster ? movie.poster : `../IMAGES/missingposter.png`;
         posterElement.addEventListener("click", () => {
             window.location.href = `movieDetails.html?id=${movie.movieId}`;
           });
