@@ -8,7 +8,7 @@ function randomSearchResults(randoms, str) {
   console.log(randoms.results);
   console.log("META", randoms.meta);
 
-  // If there are no search results, display an error message
+   // If there are no search results, display an error message
   if (randoms.results.length == 0) {
     let responseText = document.createElement("span");
     responseText.appendChild(document.createTextNode(`The movie ${str} does not exist in the database`));
@@ -74,7 +74,7 @@ const wordsArray = wordsList.split(',');
 // Generate a random index to select a word from the array
 const randomIndex = Math.floor(Math.random() * wordsArray.length);
 // Select a random word from the array
-const randomWord = wordsArray[randomIndex];$
+const randomWord = wordsArray[randomIndex];
   // Construct the API url with the selected random word and the API key
   let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=${randomWord}`;
   // Log the API url to the console
@@ -84,7 +84,7 @@ const randomWord = wordsArray[randomIndex];$
     .then(response => response.json())
     .then(randoms => {randomSearchResults(randoms)})
     .catch(err => {
-      console.error(err);
+    console.error(err);
     });
 });
 

@@ -76,6 +76,7 @@ img {
   justify-content: center;
   display: flex;
   flex-direction: column;
+  margin-bottom: 12vh;
 }
 
 .div5 {
@@ -156,4 +157,7 @@ ul.nav > li > a {
   position: relative;
   background-color: transparent;
   size: 0.1em;
+}
+.movie-card {
+  cursor: pointer;
 }

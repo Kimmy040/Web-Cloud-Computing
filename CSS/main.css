@@ -39,6 +39,15 @@ button + button {
   margin-left: 0.7vw;
 }
 
+.error-message {
+  color: red;
+  font-weight: bold;
+  font-size: 1.2vw;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 15px;
+}
+
 .output {
   display: flex;
   flex-wrap: wrap;
@@ -51,13 +60,14 @@ button + button {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 5px;
+  margin-bottom: 20vh;
   text-align: center;
 }
 
 figure {
   height: 50vh;
   margin: 20px;
-  margin-bottom: 200px;
+  margin-bottom: 12vh;
   cursor: pointer;
 }
 
