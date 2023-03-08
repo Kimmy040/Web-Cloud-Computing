@@ -11,6 +11,10 @@ function searchResults(content, str) {
   console.log(content.results);
   console.log("META", content.meta);
 
+  // Clear the contents of the container
+  let rout = document.querySelector(".randomoutput");
+  rout.innerHTML = '';
+
   // If no search results are returned, display a message indicating that the movie doesn't exist in the database
   if (content.results.length == 0) {
     let responseText = document.createElement("span");

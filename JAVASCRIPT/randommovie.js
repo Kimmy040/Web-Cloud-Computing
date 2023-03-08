@@ -109,34 +109,39 @@ document.addEventListener("DOMContentLoaded", () => {
   const shuffleButton = document.getElementById("shuffle-button");
   const container = document.getElementById("container");
   // Add an event listener to the shuffle button
-  shuffleButton.addEventListener("click", () => {
-  // List of 100 most common words in movie titles
-  const wordsList = 'the,of,a,and,in,to,for,with,on,at,from,by,an,is,his,her,she,him,he,they,their,them,it,that,this,be,but,or,as,up,who,out,not,one,all,into,has,are,we,was,you,me,my,your,our,can,will,love,man,woman,day,night,life,world,time,way,home,heart,mind,soul,body,death,game,war,king,queen,prince,princess,power,money,city,country,school,house,family,friends,adventure,journey,story,tale,legend,mystery,thriller,horror,comedy,drama,action,romance,fantasy,science,fiction,space,magic,force,hero,villain,battle,quest,treasure';
-  // Split the words list into an array of individual words
-  const wordsArray = wordsList.split(',');
-  // Generate a random index to select a word from the array
-  const randomIndex = Math.floor(Math.random() * wordsArray.length);
-  // Select a random word from the array
-  const randomWord = wordsArray[randomIndex];
-  // Construct the API url with the selected random word and the API key
-    let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=${randomWord}`;
-      // Log the API url to the console
-      console.log(url);
-      // Fetch data from the Watchmode API using the constructed url
-      fetch(url)
-        .then(response => response.json())
-        .then(randoms => {
-          if (randoms.results.length == 0) {
-            // If results length == 0 use backupword 'the' in API request
-            url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=the`;
-            return fetch(url).then(response => response.json());
-          } else {
-            return randoms;
-          }
-        })
-        .then(randoms => {randomSearchResults(randoms, randomWord)})
-        .catch(err => {
-        console.error(err);
-        });
+  shuffleButton.addEventListener("click", (ev) => {
+  // Prevent the default form submission behavior, which would cause the page to reload
+  ev.preventDefault();
+  // Fetch the word list file
+  fetch('../DATA/10000_Words.csv')
+    .then(response => response.text())
+    .then(words => {
+    // Split the words into an array of individual words
+    const wordsArray = words.split('\n').map(row => row.split(',')[0]);
+    // Generate a random index to select a word from the array
+    const randomIndex = Math.floor(Math.random() * wordsArray.length);
+    // Select a random word from the array
+    const shuffleWord = wordsArray[randomIndex];
+    // Construct the API url with the selected random word and the API key
+    let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=${shuffleWord}`;
+    // Log the API url to the console
+    console.log(url);
+    // Fetch data from the Watchmode API using the constructed url
+    fetch(url)
+      .then(response => response.json())
+      .then(randoms => {
+        if (randoms.results.length <= 3) {
+          // If results length == 0 use backupword 'the' in API request
+          url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=the`;
+          return fetch(url).then(response => response.json());
+         } else {
+          return randoms;
+        }
+      })
+      .then(randoms => {randomSearchResults(randoms, shuffleWord)})
+      .catch(err => {
+      console.error(err);
+      });
     });
+  })
 })
