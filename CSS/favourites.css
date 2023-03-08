@@ -27,38 +27,53 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2em;
+  padding: 2vw;
 }
 
 .movie-card h2 {
-  margin-bottom: 10px;
-  font-size: 20px;
+  margin-bottom: 1vh;
+  font-size: 2vw;
   color: #000000;
 }
 
 .movie-card p {
-  margin-bottom: 10px;
-  font-size: 16px;
+  margin-bottom: 1vh;
+  font-size: 1.5vw;
 }
 
 .movie-card img {
-  height: 50vh;
-  margin-bottom: 5vh;
+  height: 40vh;
+  width: 25vw;
+  margin-bottom: 2vh;
 }
 
 .movie-card button {
-  margin-top: 10px;
-  padding: 10px;
-  border: none;
-  background-color: #333;
-  color: #fff;
-  cursor: pointer;
-}
+    margin-top: 1vh;
+    padding: 1vw;
+    font-size: 1.5vw;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+  }
   
 .movie-card img:hover,
 .movie-card h2:hover,
 .movie-card button:hover {
   transform: scale(1.1);
   cursor: pointer;
+}
+
+.chart {
+  background-color: rgba(236, 236, 236, 0.802);
+  color: rgba(44, 44, 44, 0.887);
+  box-shadow: 16px 11px 11px gray;
+  border-radius: 3%;
+  padding: 16px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12vh;
 }
  

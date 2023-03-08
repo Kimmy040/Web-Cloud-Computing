@@ -37,7 +37,7 @@ function print() {
 
         favoriteMoviesGridElement.appendChild(cardElement);
         
-        if (movie.genres != undefined) {
+        if (movie.genre != undefined) {
             const genres = movie.genre.split(",");
             console.log(movie.genre)
             genres.forEach(genre => {
@@ -54,20 +54,17 @@ function print() {
     data: {
         labels: Object.keys(genreCount),
         datasets: [{
-        label: "Favorite Movies by Genre",
+        label: "Favorite Genre by number of movies",
         data: Object.values(genreCount),
-        backgroundColor: "rgba(54, 162, 235, 0.5)"
+        backgroundColor: "rgba(54, 162, 235)"
         }]
     },
     options: {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
-                },
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Number of Movies'
+                    beginAtZero: true,
+                    stepSize: 1 
                 }
             }]
         }
@@ -84,4 +81,6 @@ function deleteMovie(movieId) {
   
     // Store the updated favorite movie list in local storage
     localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
+
+    print()
   }
