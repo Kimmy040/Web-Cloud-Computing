@@ -1,5 +1,5 @@
 // Assign the API key to a variable
-let APIKEY = "feAyW4jkRKfNDjp7FMKI69hkT6cyahzHwhiUIkPj";
+let APIKEY = "PhQy7OxxJ88X4C5tEa7RVjcIr9L74tUar2lQu6Pk";
 
 // Function that displays search results in the container element
 function searchResults(content, str) {

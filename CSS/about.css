@@ -86,3 +86,8 @@ body {
     margin-bottom: 10px;
     color: #3c00ffed;
   }
+
+  img {
+    width: 30px;
+    height: 20px;
+  }
