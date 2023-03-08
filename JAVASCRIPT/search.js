@@ -1,5 +1,5 @@
 // Assign the API key to a variable
-let APIKEY = "Ysrr6mfHWkD5IHRC6m2NpZpJED4djCB4HUuduA3f";
+let APIKEY = "feAyW4jkRKfNDjp7FMKI69hkT6cyahzHwhiUIkPj";
 
 // Function that displays search results in the container element
 function searchResults(content, str) {
@@ -14,7 +14,8 @@ function searchResults(content, str) {
   // If no search results are returned, display a message indicating that the movie doesn't exist in the database
   if (content.results.length == 0) {
     let responseText = document.createElement("span");
-    responseText.appendChild(document.createTextNode(`The movie ${str} does not exsist in the database`));
+    responseText.classList.add("error-message"); // add class name for css
+    responseText.appendChild(document.createTextNode(`Sorry, the movie ${str} does not exist in the database.`));
     container.appendChild(responseText)
   }
   // If more than 3 search results are returned, display the first 3 results with image and captions
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", init);
     document.getElementById("btnSearch").addEventListener("click", ev => {
         // Prevent the default form submission behavior, which would cause the page to reload
         ev.preventDefault();
-        let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=1&search_value=`;
+        let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=`;
         // Get the search query entered by the user, remove leading and trailing whitespace
         let str = document.getElementById("search").value.trim(); 
         // Append the search query to the API URL
