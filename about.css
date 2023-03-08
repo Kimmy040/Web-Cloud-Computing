@@ -88,7 +88,10 @@ p {
 }
 
 img {
-height: 40px;
-max-width: 40px;
-margin-right: 50px;
+  height: 1vw;
+  max-width: 1vw;
+  display: inline-block;
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
 }
