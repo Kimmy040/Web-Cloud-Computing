@@ -1,34 +1,15 @@
-
-function addMovie() {
-    // Define the new movie information
-    const newMovie = {
-        movieId: '1234', // replace with the actual movie ID
-        poster: 'https://cdn.watchmode.com/posters/01397224_poster_w185.jpg', // replace with the URL of the movie's poster image
-        title: 'Movie Header', // replace with the actual title of the movie
-        year: 2022 // replace with the actual year the movie was released
-    };
-    
-    // Get the user's favorite movie list from local storage
-    const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || {};
-    
-    console.log(favoriteMovies)
-    // Add the new movie to the list
-    favoriteMovies[newMovie.movieId] = newMovie;
-    
-    // Store the updated favorite movie list in local storage
-    localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));    
-}
-
 function print() {
         // Get the user's favorite movie list from local storage
     const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || {};
+
+    const genreCount = {}; 
+    console.log(favoriteMovies)
 
     // Display the list of favorite movies on the page (for example, in a grid of movie cards)
     const favoriteMoviesGridElement = document.querySelector(".output");
     Object.values(favoriteMovies).forEach(movie => {
     const cardElement = document.createElement('div');
         cardElement.classList.add('movie-card');
-
         const titleElement = document.createElement('h2');
         titleElement.textContent = movie.title;
         cardElement.appendChild(titleElement);
@@ -55,7 +36,43 @@ function print() {
         cardElement.appendChild(deleteButton);
 
         favoriteMoviesGridElement.appendChild(cardElement);
+        
+        if (movie.genres != undefined) {
+            const genres = movie.genre.split(",");
+            console.log(movie.genre)
+            genres.forEach(genre => {
+                genreCount[genre] = genreCount[genre] ? genreCount[genre] + 1 : 1;
+            });
+      } 
     })
+    
+    console.log(genreCount)
+    // Create a chart using Chart.js
+    const ctx = document.getElementById("genre-chart").getContext("2d");
+    const chart = new Chart(ctx, {
+    type: "bar",
+    data: {
+        labels: Object.keys(genreCount),
+        datasets: [{
+        label: "Favorite Movies by Genre",
+        data: Object.values(genreCount),
+        backgroundColor: "rgba(54, 162, 235, 0.5)"
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Number of Movies'
+                }
+            }]
+        }
+    }
+    });
 }
 
 function deleteMovie(movieId) {

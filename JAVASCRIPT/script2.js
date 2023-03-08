@@ -41,9 +41,9 @@ function setMovie(data) {
     textElement.textContent = "No similar movies found";
     similarMoviesGridElement.appendChild(textElement);
   } else if (similarTitles.lenght < 5) {
-    displaySimilarMovies(similarTitles)
+    //displaySimilarMovies(similarTitles)
   } else {
-    displaySimilarMovies(similarTitles.slice(0, 5))
+   // displaySimilarMovies(similarTitles.slice(0, 5))
   }
   //let format = document.getElementById("format"); //Needs to connect to sources
   //format.innerHTML = data.sources.format ? data.sources.format : "Undefined";
@@ -58,7 +58,7 @@ function setMovie(data) {
 }
 
 function displaySimilarMovies(similarIds) {
-  const apiKey = "feAyW4jkRKfNDjp7FMKI69hkT6cyahzHwhiUIkPj";
+  const apiKey = "jbyWkfuAOD1sO9iLlNi29PV4Wf1Uok9rcM8yzwgO";
 
   similarIds.forEach(id => {console.log(id)})
   const similarMoviesGridElement = document.querySelector(".similarTitles");
@@ -189,12 +189,14 @@ function addMovie() {
   let poster = document.getElementById('posterimg').src
   let title = document.getElementById('title').textContent
   let year = document.getElementById('year').textContent
+  let genre = document.getElementById('genre').textContent
 
   const newMovie = {
       movieId: movieId,
       poster: poster, 
       title: title, 
-      year: year 
+      year: year,
+      genre: genre 
   };
   
   // Get the user's favorite movie list from local storage
@@ -225,7 +227,7 @@ function getMovie() {
     return;
   }
 
-  const apiKey = "feAyW4jkRKfNDjp7FMKI69hkT6cyahzHwhiUIkPj";
+  const apiKey = "jbyWkfuAOD1sO9iLlNi29PV4Wf1Uok9rcM8yzwgO";
   const url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}&append_to_response=cast-crew,sources`;
 
   fetch(url)
