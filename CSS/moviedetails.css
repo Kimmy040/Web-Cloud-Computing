@@ -158,3 +158,6 @@ ul.nav > li > a {
   background-color: transparent;
   size: 0.1em;
 }
+.movie-card {
+  cursor: pointer;
+}
