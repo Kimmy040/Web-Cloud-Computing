@@ -1,5 +1,6 @@
 //Set API key globally
-  const apiKey = "jbyWkfuAOD1sO9iLlNi29PV4Wf1Uok9rcM8yzwgO";
+const apiKey = "80wLq9yoaGEQUvNRLmyefU7PgIQfSHynAsSABpTX";
+// Backupkey jbyWkfuAOD1sO9iLlNi29PV4Wf1Uok9rcM8yzwgO
 
 
 // Set the details of the requested movie
@@ -119,7 +120,7 @@ function trailer(data){
 function platform(data) {
   let output = document.getElementById("platform"); 
   let platforms = '';
-  if (data.sources.lenght == undefined) {
+  if (data.sources[0] == undefined) {
     platforms = " Not available"
   } else {
     data.sources.forEach(platform => {
