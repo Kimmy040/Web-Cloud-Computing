@@ -1,5 +1,5 @@
 //Set API key globally
-  const apiKey = "PhQy7OxxJ88X4C5tEa7RVjcIr9L74tUar2lQu6Pk";
+  const apiKey = "jbyWkfuAOD1sO9iLlNi29PV4Wf1Uok9rcM8yzwgO";
 
 
 // Set the details of the requested movie
@@ -137,7 +137,6 @@ function platform(data) {
 
 // Split between cast and crew, and print first 4 items of both
 function cast_crew(data){
-  console.log(data.cast_crew)
   const cast = data.cast_crew.filter(item => item.type == "Cast");
   const crew = data.cast_crew.filter(item => item.type == "Crew");
 
@@ -227,8 +226,6 @@ function getMovie() {
     alert('Missing movie ID in URL');
     return;
   }
-
-  //const apiKey = "PhQy7OxxJ88X4C5tEa7RVjcIr9L74tUar2lQu6Pk";
   const url = `https://api.watchmode.com/v1/title/${movieId}/details/?apiKey=${apiKey}&append_to_response=cast-crew,sources`;
 
   fetch(url)

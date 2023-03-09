@@ -5,7 +5,6 @@ function print() {
 
     const genreCount = {}; 
 
-    console.log(favoriteMovies)
     const favoriteMoviesGridElement = document.querySelector(".output");
 
     // Print message if the user does not have any movies in the favourites list yet
@@ -49,7 +48,6 @@ function print() {
         // Check if a movie have a genre, if so, update the counts of the genres
         if (movie.genre != undefined && movie.genre != "") {
             const genres = movie.genre.split(",");
-            console.log(movie.genre)
             genres.forEach(genre => {
                 genreCount[genre] = genreCount[genre] ? genreCount[genre] + 1 : 1;
             });
