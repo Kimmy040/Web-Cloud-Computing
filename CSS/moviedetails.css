@@ -162,5 +162,8 @@ ul.nav > li > a {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.sim-poster {
   cursor: pointer;
 }

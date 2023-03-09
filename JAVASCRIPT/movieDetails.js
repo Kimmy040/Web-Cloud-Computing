@@ -85,6 +85,7 @@ function displaySimilarMovies(similarIds) {
           cardElement.appendChild(yearElement);
 
           const posterElement = document.createElement('img');
+          posterElement.classList.add('sim-poster')
           posterElement.src = data.poster;
           posterElement.addEventListener("click", () => {
               window.location.href = `movieDetails.html?id=${data.id}`;
