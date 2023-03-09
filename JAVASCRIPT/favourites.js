@@ -1,11 +1,19 @@
 // Function that prints all favourite movies of the user
 function print() {
-        // Get the user's favorite movie list from local storage
+    // Get the user's favorite movie list from local storage
     const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || {};
 
     const genreCount = {}; 
 
+    console.log(favoriteMovies)
     const favoriteMoviesGridElement = document.querySelector(".output");
+
+    // Print message if the user does not have any movies in the favourites list yet
+    if (Object.keys(favoriteMovies).length === 0) {
+        const titleElement = document.createElement('h2');
+        titleElement.textContent = "No movies in the favourites list yet";
+        favoriteMoviesGridElement.appendChild(titleElement);
+    }
 
     // Display the list of favorite movies on the page, for loops create a card of each movie
     Object.values(favoriteMovies).forEach(movie => {
@@ -76,8 +84,16 @@ function print() {
 // Function to delete a movie from local storage (retrives, deletes and sends to local storage)
 function deleteMovie(movieId) {
     const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || {};
+    const favoriteMoviesGridElement = document.querySelector(".output");
 
     delete favoriteMovies[movieId];
+
+    // If last movie in favourties list is deleted, show message of no favourites
+    if (Object.keys(favoriteMovies).length === 0) {
+        const titleElement = document.createElement('h2');
+        titleElement.textContent = "No movies in the favourites list yet";
+        favoriteMoviesGridElement.appendChild(titleElement);
+    }
   
     localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
 

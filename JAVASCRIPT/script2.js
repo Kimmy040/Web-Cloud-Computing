@@ -1,8 +1,9 @@
-//let movieId;
+//Set API key globally
   const apiKey = "PhQy7OxxJ88X4C5tEa7RVjcIr9L74tUar2lQu6Pk";
 
+
+// Set the details of the requested movie
 function setMovie(data) {
-  console.log(data);
   let title = document.getElementById("title");
   title.innerHTML = data.title;
   let plot = document.getElementById("plot");
@@ -15,8 +16,6 @@ function setMovie(data) {
   critic_score.innerHTML = data.critic_score ? data.critic_score : "Unknown";
   let year = document.getElementById("year");
   year.innerHTML = data.year ? data.year : "Unknown";
-  //let platform = document.getElementById("platform");
-  //platform.innerHTML = data.sources; //Needs fix
   let duration = document.getElementById("duration");
   duration.innerHTML = data.runtime_minutes ? data.runtime_minutes : "Unknown";
   let type = document.getElementById("type");
@@ -30,6 +29,8 @@ function setMovie(data) {
   let tv_show = document.getElementById("type");  
   tv_show.innerHTML = data.type ? data.type : "Unknown";
   similarTitles = data.similar_titles
+
+  // Only call similarTitles if found, and slice to only 5 if over
   if (Object.is(similarTitles, null)) {
     const similarMoviesGridElement = document.querySelector(".similarTitles")
     const textElement = document.createElement('p');
@@ -38,29 +39,25 @@ function setMovie(data) {
   } else if (similarTitles.lenght < 5) {
     displaySimilarMovies(similarTitles)
   } else {
-    //displaySimilarMovies(similarTitles.slice(0, 1))
+    displaySimilarMovies(similarTitles.slice(0, 5))
   }
-  //let format = document.getElementById("format"); //Needs to connect to sources
-  //format.innerHTML = data.sources.format ? data.sources.format : "Undefined";
 
-  //Call the platform function
+  //Call the platform function to get platform
   platform(data)
 
-  //Call the trailer function
+  //Call the trailer function to make embeded link
   trailer(data);
 
-  //Call the cast_crew function
+  //Call the cast_crew function to limit cast and crew
   cast_crew(data);
 
 }
 
+// Function to display similar movies, each movie is requested to api and printed
 function displaySimilarMovies(similarIds) {
-  //const apiKey = "jbyWkfuAOD1sO9iLlNi29PV4Wf1Uok9rcM8yzwgO";
-
-  similarIds.forEach(id => {console.log(id)})
   const similarMoviesGridElement = document.querySelector(".similarTitles");
 
-
+  // Request movie by id and print each one's poster, title and year
   similarIds.forEach(id => {
     const url = `https://api.watchmode.com/v1/title/${id}/details/?apiKey=${apiKey}`;
     fetch(url)
@@ -71,8 +68,7 @@ function displaySimilarMovies(similarIds) {
         return response.json();
       })
       .then(data => {
-        console.log(data)
-          console.log(data)
+          //Create card element for each
           const cardElement = document.createElement('div');
           cardElement.classList.add('movie-card');
           cardElement.style.width = '10rem';
@@ -95,18 +91,18 @@ function displaySimilarMovies(similarIds) {
             });
           cardElement.appendChild(posterElement);
 
+          // Append the card element to the div for similar movies
           similarMoviesGridElement.appendChild(cardElement);
 
         })
       .catch(err => {
         console.error(err);
-        alert('Failed to fetch similar movie details');
+        alert('Failed to access similar movie details');
       });
   });
 }
 
-
-
+// Changes youtube link to be embeded so we can show it on webpage
 function trailer(data){
   let trailer = document.getElementById("trailer");
   const splitUrl = data.trailer.split("v=")
@@ -118,8 +114,8 @@ function trailer(data){
   } 
 }
 
+// Gets all platform sources and prints only the one's with type subscribtion
 function platform(data) {
-  console.log(data.sources.lenght)
   let output = document.getElementById("platform"); 
   let platforms = '';
   if (data.sources.lenght == undefined) {
@@ -130,23 +126,24 @@ function platform(data) {
         if (platforms !== '') {
           platforms += ', ';
         }
+        // Add link in the platform name, links to the platform and that movie
         platforms += `<a href="${platform.web_url}" target="_blank">${platform.name}</a>`;
       }
     });
   }
   output.innerHTML = platforms;
-
-
 }
 
+
+// Split between cast and crew, and print first 4 items of both
 function cast_crew(data){
   console.log(data.cast_crew)
   const cast = data.cast_crew.filter(item => item.type == "Cast");
   const crew = data.cast_crew.filter(item => item.type == "Crew");
 
-  //Create a table
+  //Create a table for cast print 
   let castTable = "<table><tr><th>Name</th><th>Role</th><th>Headshot</th></tr>";
-  //Loop through the cast array
+  //Loop through the cast array and print information
   cast.slice(0,4).forEach(item => {
     let headshotSrc = item.headshot_url;
     if (headshotSrc === "https://cdn.watchmode.com/profiles/empty_headshot.jpg"){
@@ -157,9 +154,9 @@ function cast_crew(data){
   castTable += "</table>" ;
   document.getElementById("cast").innerHTML = castTable;
 
-  //Create a table
+  //Create a table for crew print
   let crewTable = "<table><tr><th>Name</th><th>Role</th><th>Headshot</th></tr>";
-  //Loop through the crew array
+  //Loop through the crew array and print information
   crew.slice(0,4).forEach(item => {
     let headshotSrc = item.headshot_url;
     if (headshotSrc === "https://cdn.watchmode.com/profiles/empty_headshot.jpg"){
@@ -173,7 +170,7 @@ function cast_crew(data){
 }
 
 
-
+// Function to set image next to title, yellow star if already in favorites
 function checkFavorites(movieId){
   const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || {};
   const starImg = document.querySelector('#star');
@@ -187,8 +184,9 @@ function checkFavorites(movieId){
   }
 }
 
+// Adds or removes a movie from favourites (if the star is clicked)
 function addMovie() {
-  // Define the new movie information
+  // Define the information we want to save
   let poster = document.getElementById('posterimg').src
   let title = document.getElementById('title').textContent
   let year = document.getElementById('year').textContent
@@ -202,24 +200,24 @@ function addMovie() {
       genre: genre 
   };
   
-  // Get the user's favorite movie list from local storage
+  // Get the favorite movie list from local storage
   const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || {};
 
+  // Remove if the movie is in the list already, add if not
   if (movieId in favoriteMovies) {
-    // Remove the movie from the list
     delete favoriteMovies[movieId];
   } else {
-    // Add the new movie to the list
   favoriteMovies[newMovie.movieId] = newMovie;
   }
   
   // Store the updated favorite movie list in local storage
   localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));  
   
+  // Run checkFavourites again to change the star icon
   checkFavorites(movieId)
 }
 
-
+// Get the id from URL and send API request
 function getMovie() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -249,8 +247,4 @@ function getMovie() {
       alert('Failed to fetch movie details');
     });
 }
-
-//document.addEventListener('DOMContentLoaded', function() {
-//  getMovie();
-// });
 
