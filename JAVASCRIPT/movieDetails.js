@@ -110,7 +110,7 @@ function trailer(data){
   const splitUrl = data.trailer.split("v=")
   const youtubeId = splitUrl[1]
   if (data.trailer == ""){
-    trailer.innerHTML = ""
+    trailer.style.display = "none";
   } else {
     trailer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${youtubeId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
   } 
@@ -129,7 +129,7 @@ function platform(data) {
           platforms += ', ';
         }
         // Add link in the platform name, links to the platform and that movie
-        platforms += `<a href="${platform.web_url}" target="_blank">${platform.name}</a>`;
+        platforms += `<a href="${platform.web_url}" target="_blank">${platform.name}</a> (${platform.format})`;
       }
     });
   }
