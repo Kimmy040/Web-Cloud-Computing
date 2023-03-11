@@ -8,10 +8,6 @@ function searchResults(content, str) {
   const container = document.getElementById('container');
   container.replaceChildren()
 
-  // Log the search results and meta data to the console for debugging purposes
-  console.log(content.results);
-  console.log("META", content.meta);
-
   // Clear the contents of the container
   let rout = document.querySelector(".randomoutput");
   rout.innerHTML = '';
@@ -111,7 +107,6 @@ document.addEventListener("DOMContentLoaded", init);
         let str = document.getElementById("search").value.trim(); 
         // Append the search query to the API URL
         url = url.concat(str); 
-        console.log(url);
         // Send a GET request to the Watchmode API with the constructed URL, and handle the response asynchronously
         fetch(url)
           // Convert the response to a JSON object

@@ -4,16 +4,13 @@ function randomSearchResults(randoms, str) {
   const container = document.getElementById('container');
   container.replaceChildren()
 
-  // Log the search results and metadata to the console
-  console.log(randoms.results);
-  console.log("META", randoms.meta);
   // Clear the contents of the container
   let rout = document.querySelector(".randomoutput");
   rout.innerHTML = '';
    // If there are no search results, display an error message
   if (randoms.results.length == 0) {
     let responseText = document.createElement("span");
-    responseText.appendChild(document.createTextNode(`The movie ${str} does not exist in the database`));
+    responseText.appendChild(document.createTextNode(`Error, random movies could not be loaded`));
     container.appendChild(responseText)
   } else {
     // If there are search results, display up to 3 random ones
@@ -80,8 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const randomWord = wordsArray[randomIndex];
       // Construct the API url with the selected random word and the API key
       let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=${randomWord}`;
-      // Log the API url to the console
-      console.log(url);
       // Fetch data from the Watchmode API using the constructed url
       fetch(url)
         .then(response => response.json())
@@ -124,8 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const shuffleWord = wordsArray[randomIndex];
     // Construct the API url with the selected random word and the API key
     let url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${APIKEY}&search_type=2&search_value=${shuffleWord}`;
-    // Log the API url to the console
-    console.log(url);
     // Fetch data from the Watchmode API using the constructed url
     fetch(url)
       .then(response => response.json())
